@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Write clear, professional customer messages in seconds with ReplyFast.">
+<title>ReplyFast — Customer messages made easy</title>
+<style>
+:root{--ink:#17221e;--muted:#66736c;--line:#dce5df;--bg:#f5f8f5;--green:#174f3b;--lime:#c9f27a;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{padding:20px max(20px,calc((100% - 1040px)/2));display:flex;justify-content:space-between;align-items:center;background:#fff;border-bottom:1px solid var(--line)}
+.brand{display:flex;gap:10px;align-items:center;font-weight:800;font-size:1.2rem;letter-spacing:-.03em}.logo{width:38px;height:38px;border-radius:12px;background:var(--green);color:white;display:grid;place-items:center;font-weight:900}
+.tag{font-size:.8rem;color:var(--green);background:#eef8e2;padding:6px 10px;border-radius:999px;font-weight:700}
+main{max-width:1040px;margin:0 auto;padding:38px 20px 64px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center;margin-bottom:28px}
+h1{font-size:clamp(2.2rem,5vw,3.7rem);line-height:1.02;letter-spacing:-.055em;margin:0 0 18px}
+.hero p{color:var(--muted);font-size:1.1rem;max-width:530px}.pill{display:inline-block;background:#e7f0e8;color:var(--green);padding:6px 10px;border-radius:999px;font-size:.8rem;font-weight:800;margin-bottom:14px}
+.preview{background:var(--green);color:white;padding:24px;border-radius:24px;box-shadow:0 18px 50px #174f3b1a}.preview .bubble{background:#fff;color:var(--ink);padding:16px;border-radius:15px 15px 15px 4px;margin-top:18px}.preview small{color:#d6e8dc}
+.app{display:grid;grid-template-columns:.8fr 1.2fr;gap:18px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 8px 30px #183e2810}
+h2{font-size:1.15rem;margin:0 0 16px;letter-spacing:-.02em}label{display:block;font-size:.88rem;font-weight:700;margin:14px 0 6px}
+select,input,textarea{width:100%;border:1px solid #cbd7ce;border-radius:11px;padding:12px;font:inherit;background:#fff;color:var(--ink)}
+textarea{min-height:220px;resize:vertical;line-height:1.55}
+button{border:0;border-radius:11px;background:var(--green);color:white;font-weight:800;padding:12px 16px;font:inherit;cursor:pointer}
+button:hover{filter:brightness(1.08)}button.secondary{background:#edf3ee;color:var(--green);border:1px solid var(--line)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.hint{color:var(--muted);font-size:.83rem;margin-top:10px}.status{font-size:.86rem;color:var(--green);font-weight:700;min-height:1.4em}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}.feature{padding:18px;background:#fff;border:1px solid var(--line);border-radius:16px}.feature b{display:block;margin:8px 0 4px}.feature p{font-size:.9rem;color:var(--muted);margin:0}
+footer{max-width:1040px;margin:auto;padding:0 20px 34px;color:var(--muted);font-size:.82rem}
+@media(max-width:720px){.hero,.app{grid-template-columns:1fr}.preview{display:none}.features{grid-template-columns:1fr}main{padding-top:28px}header{padding:16px 20px}}
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="logo">R</div>ReplyFast</div><div class="tag">Free starter tool</div></header>
+<main>
+<section class="hero">
+<div><div class="pill">LESS TYPING. BETTER REPLIES.</div><h1>Customer messages, handled.</h1><p>Create polite, professional replies for common business situations in seconds. Pick a situation, add a few details, then copy and send.</p></div>
+<div class="preview"><small>EXAMPLE · FOLLOW-UP</small><div class="bubble">Hi Jordan, just checking in on the estimate I sent over. Happy to answer any questions or adjust the quote if needed. Thanks again for the opportunity!</div></div>
+</section>
+<section class="app">
+<div class="panel">
+<h2>1. Choose your message</h2>
+<label for="scenario">Situation</label>
+<select id="scenario">
+<option value="quote">Follow up on a quote</option><option value="late">Friendly late-payment reminder</option><option value="appointment">Appointment reminder</option><option value="complaint">Respond to an unhappy customer</option><option value="review">Ask for a review</option><option value="delay">Explain a delay</option><option value="thanks">Thank a customer</option><option value="lead">Reply to a new inquiry</option>
+</select>
+<label for="name">Customer name (optional)</label><input id="name" placeholder="e.g. Jordan">
+<label for="business">Your business name (optional)</label><input id="business" placeholder="e.g. Brightside Cleaning">
+<label for="detail">Extra detail (optional)</label><input id="detail" placeholder="e.g. estimate sent last Tuesday">
+<button id="generate" style="width:100%;margin-top:18px">Generate my reply</button>
+<p class="hint">Your text stays in this browser. Don't enter sensitive customer information.</p>
+</div>
+<div class="panel">
+<h2>2. Copy and send</h2>
+<label for="result">Your message</label>
+<textarea id="result" spellcheck="true"></textarea>
+<div class="actions"><button id="copy">Copy message</button><button class="secondary" id="regenerate">Generate again</button><button class="secondary" id="clear">Clear</button></div>
+<p class="status" id="status" aria-live="polite"></p>
+</div>
+</section>
+<section class="features">
+<div class="feature"><div>⚡</div><b>Ready in seconds</b><p>Use practical templates instead of starting from a blank page.</p></div>
+<div class="feature"><div>✍️</div><b>Make it your own</b><p>Edit any wording before sending to your customer.</p></div>
+<div class="feature"><div>🔒</div><b>No account needed</b><p>This demo runs locally in your browser and stores no form data on a server.</p></div>
+</section>
+</main>
+<footer>ReplyFast is an independent prototype. It is not legal, financial, or customer-service advice. Review messages before sending. No paid features or payment processing are active in this starter version.</footer>
+<script>
+const templates={
+quote:[
+"Hi {name}, just checking in on the quote I sent over{detail}. I'm happy to answer any questions or talk through options. Thanks for considering {business}!",
+"Hello {name}, I wanted to follow up on the estimate{detail}. Let me know if you'd like any changes or have questions. Thanks!",
+"Hi {name}, hope you're doing well. Have you had a chance to review the quote{detail}? I'm here if I can clarify anything. Best, {business}."
+],
+late:[
+"Hi {name}, hope you're well. This is a friendly reminder that the payment for {detail} is still outstanding. When you have a moment, could you let me know when we can expect it? Thank you, {business}.",
+"Hello {name}, just a quick reminder about the outstanding invoice{detail}. If you've already sent payment, please disregard this message. Thanks for your help!",
+"Hi {name}, I wanted to check in regarding the payment for {detail}. Please let me know if you need me to resend the invoice. Thank you."
+],
+appointment:[
+"Hi {name}, this is a reminder of your upcoming appointment with {business}{detail}. Please reply if you need to reschedule. Looking forward to seeing you!",
+"Hello {name}, just confirming your appointment{detail}. Let us know if anything changes. Thanks!",
+"Hi {name}, a quick reminder about our scheduled visit{detail}. Please let me know if you have any questions. Best, {business}."
+],
+complaint:[
+"Hi {name}, I'm sorry to hear that your experience didn't meet expectations. Thank you for letting us know. I'd like to understand what happened and see how we can make this right. Could you share a little more detail?",
+"Hello {name}, thank you for bringing this to our attention. I'm sorry for the frustration. I'll review the details and follow up with you about the next steps.",
+"Hi {name}, I appreciate you being honest with us. I'm sorry we fell short. I'd welcome the chance to discuss the issue and work toward a fair solution."
+],
+review:[
+"Hi {name}, thanks for choosing {business}! If you were happy with the experience, we'd really appreciate an honest review. It helps other customers find us. Thanks again!",
+"Hello {name}, thank you for your business. If you have a moment, would you consider sharing feedback about your experience? We appreciate it!",
+"Hi {name}, it was a pleasure helping you. We'd love to hear your honest feedback whenever you have a moment. Thanks for supporting {business}!"
+],
+delay:[
+"Hi {name}, I wanted to update you that {detail} is taking a little longer than expected. I'm sorry for the inconvenience. I'll keep you updated and appreciate your patience.",
+"Hello {name}, apologies for the delay. We're working through the issue and will share an update as soon as we have a confirmed timeline. Thank you for understanding.",
+"Hi {name}, I wanted to be upfront that we're running behind on {detail}. I'm sorry for the disruption and will let you know as soon as I have a reliable update."
+],
+thanks:[
+"Hi {name}, thank you for choosing {business}. We really appreciate your trust and the opportunity to help. Please reach out if you need anything else!",
+"Hello {name}, thanks so much for your business. It was a pleasure working with you, and we hope to help again in the future.",
+"Hi {name}, just wanted to say thank you for your support. We appreciate it and are here if you need anything down the road."
+],
+lead:[
+"Hi {name}, thanks for reaching out to {business}! I'd be happy to learn more about what you need. Could you share a few details about the project and your ideal timing?",
+"Hello {name}, thanks for your inquiry. We'd be glad to help. Tell me a little more about what you're looking for, and I'll get back to you with the best next step.",
+"Hi {name}, thanks for contacting us! We received your message and would love to help. What's the best way to learn more about your needs?"
+]};
+let turn=0;
+function build(){
+const key=document.querySelector('#scenario').value;
+const n=document.querySelector('#name').value.trim()||'there';
+const b=document.querySelector('#business').value.trim()||'our team';
+const d=document.querySelector('#detail').value.trim();
+const variants=templates[key];const raw=variants[turn%variants.length];turn++;
+const detail=d?(key==='quote'?' ('+d+')':': '+d):'';
+document.querySelector('#result').value=raw.replaceAll('{name}',n).replaceAll('{business}',b).replaceAll('{detail}',detail);
+document.querySelector('#status').textContent='Message ready — review and edit before sending.';
+}
+document.querySelector('#generate').addEventListener('click',build);
+document.querySelector('#regenerate').addEventListener('click',build);
+document.querySelector('#clear').addEventListener('click',()=>{document.querySelector('#result').value='';document.querySelector('#status').textContent='Cleared.'});
+document.querySelector('#copy').addEventListener('click',async()=>{
+const result=document.querySelector('#result');try{await navigator.clipboard.writeText(result.value);document.querySelector('#status').textContent='Copied to clipboard.'}
+catch(e){result.select();const ok=document.execCommand('copy');document.querySelector('#status').textContent=ok?'Copied to clipboard.':'Select the message and copy it manually.'}
+});
+build();
+</script>
+</body>
+</html>
